@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/classes-c8d4ffff40be35ab3ca9d32bb8786e515d0d8b0c.jar" />
+    </item>
+    <item
+        jar="/Users/wseemann/Desktop/UICombatSchedule/app/libs/date4j.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1aa38f33676be5d3a91ac9d1e9f9ff398eeb955e">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/date4j-689d02d066ea183577c16c1e0caf239befe4ff4a.jar" />
+    </item>
+    <item
+        jar="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/exploded-aar/caldroid-2.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="86e72798a8c808cc65c7c38c313daa991899ac81">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/classes-35f38ecde0da4f4e1089eb788a244f626b03ccdb.jar" />
+    </item>
+    <item
+        jar="/Users/wseemann/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-7b656d66fbf2dd2dca1caf53c83418f1783da968.jar" />
+    </item>
+    <item
+        jar="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/classes-48bdba5293d5bc850ab4b59a988a06f5d96fc471.jar" />
+    </item>
+    <item
+        jar="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/Users/wseemann/Desktop/UICombatSchedule/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-574ce30593008dd3ec307562801cb5362e79cc79.jar" />
+    </item>
+
+</items>

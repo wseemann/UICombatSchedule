@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UI Combat Schedule</string>
+    <string name="action_donate">Donate</string>
+    <string name="action_info">About</string>
+    <string name="action_share">Share</string>
+    <string name="about_text">The University of Illinois does not post a schedule for the combat room in the Activities and Recreation Center (ARC) and the student workers at the front desk are too lazy to check if you call. This application provides the combat room schedule as it is currently posted on the door at the ARC.\n\nThe application icon was designed by the beautiful and talented Katie Chiang.</string>
+    <string name="licenses">Licenses</string>
+    <string name="butts">Butts!</string>
+</resources>

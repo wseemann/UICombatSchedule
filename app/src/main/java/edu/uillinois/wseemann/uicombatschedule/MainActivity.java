@@ -1,12 +1,11 @@
 package edu.uillinois.wseemann.uicombatschedule;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,9 +25,8 @@ import edu.uillinois.wseemann.uicombatschedule.fragment.AboutDialog;
 import edu.uillinois.wseemann.uicombatschedule.fragment.CustomCaldroidFragment;
 import edu.uillinois.wseemann.uicombatschedule.fragment.GenericDialog;
 import edu.uillinois.wseemann.uicombatschedule.fragment.ScheduleDialog;
-import hirondelle.date4j.DateTime;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private CustomCaldroidFragment caldroidFragment;
     private ActionMode mActionMode;

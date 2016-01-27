@@ -1,15 +1,8 @@
 package edu.uillinois.wseemann.uicombatschedule.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +14,6 @@ import com.roomorama.caldroid.CaldroidGridAdapter;
 import java.util.HashMap;
 
 import edu.uillinois.wseemann.uicombatschedule.R;
-import edu.uillinois.wseemann.uicombatschedule.database.Database;
-import edu.uillinois.wseemann.uicombatschedule.utils.Date;
 import hirondelle.date4j.DateTime;
 
 /**
@@ -30,28 +21,11 @@ import hirondelle.date4j.DateTime;
  */
 public class CustomCaldroidAdapter extends CaldroidGridAdapter {
 
-    private Context mContext;
-
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            edu.uillinois.wseemann.uicombatschedule.utils.Date date = (edu.uillinois.wseemann.uicombatschedule.utils.Date) msg.obj;
-            String info = date.getInfo();
-            TextView tv = date.getView();
-
-            if (info != null) {
-                tv.setText(info);
-                tv.setBackgroundResource(R.color.blue);
-            }
-        }
-    };
 
     public CustomCaldroidAdapter(Context context, int month, int year,
                                        HashMap<String, Object> caldroidData,
                                        HashMap<String, Object> extraData) {
         super(context, month, year, caldroidData, extraData);
-        mContext = context;
     }
 
     @Override
@@ -63,7 +37,6 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
         // For reuse
         if (convertView == null) {
             cellView = inflater.inflate(R.layout.custom_list_item, null);
-            //cellView = inflater.inflate(android.R.layout.simple_list_item_2, null);
         }
 
         int topPadding = cellView.getPaddingTop();
@@ -112,9 +85,16 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
         // Customize for selected dates
         if (selectedDates != null && selectedDates.indexOf(dateTime) != -1) {
             cellView.setBackgroundColor(resources
-                    .getColor(com.caldroid.R.color.caldroid_sky_blue));
+                    .getColor(android.R.color.white));
 
             tv1.setTextColor(Color.BLACK);
+
+            String info = getInfo(dateTime);
+
+            if (info != null) {
+                tv2.setText(info);
+                tv2.setBackgroundResource(R.color.blue);
+            }
 
         } else {
             shouldResetSelectedView = true;
@@ -125,18 +105,17 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
             if (dateTime.equals(getToday())) {
                 cellView.setBackgroundResource(com.caldroid.R.drawable.red_border);
             } else {
+                tv2.setBackgroundResource(0);
                 cellView.setBackgroundResource(com.caldroid.R.drawable.cell_bg);
             }
         }
 
+        if (dateTime.equals(getToday())) {
+            cellView.setBackgroundResource(com.caldroid.R.drawable.red_border);
+        }
+
         tv1.setText("" + dateTime.getDay());
-
-        /*String info = getDateInfo(dateTime);
-
-        if (info != null) {
-            tv2.setText(info);
-            tv2.setBackgroundResource(R.color.blue);
-        }*/
+        //tv2.setText("Hi");
 
         // Somehow after setBackgroundResource, the padding collapse.
         // This is to recover the padding
@@ -146,61 +125,22 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
         // Set custom color if required
         setCustomResources(dateTime, cellView, tv1);
 
-        new DatabaseQuery(mHandler, dateTime, tv2).execute();
-
         return cellView;
     }
 
-    private class DatabaseQuery extends AsyncTask<Void, Void, Void> {
+    private String getInfo(DateTime date) {
+        int month = date.getMonth();
+        int day = date.getDay();
+        int year = date.getYear();
 
-        private Handler mHandler;
-        private DateTime mDate;
-        private TextView mView;
+        String stringDate = month + "/" + day + "/" + year;
 
-        public DatabaseQuery(Handler handler, DateTime date, TextView view) {
-            mHandler = handler;
-            mDate = date;
-            mView = view;
+        edu.uillinois.wseemann.uicombatschedule.utils.Date obj = (edu.uillinois.wseemann.uicombatschedule.utils.Date) extraData.get(stringDate);
+
+        if (obj != null) {
+            return obj.getInfo();
         }
 
-        @Override
-        protected Void doInBackground(Void... v) {
-            Date date = getDateInfo(mDate);
-            date.setView(mView);
-            Message msg = mHandler.obtainMessage();
-            msg.obj = date;
-
-            mHandler.sendMessage(msg);
-
-            return null;
-        }
-
-        private edu.uillinois.wseemann.uicombatschedule.utils.Date getDateInfo(DateTime date) {
-            String strDate = null;
-            String info = null;
-
-            int month = date.getMonth();
-            int day = date.getDay();
-            int year = date.getYear();
-
-            String stringDate = month + "/" + day + "/" + year;
-
-            Database database = new Database(mContext);
-            SQLiteDatabase db = database.getReadableDatabase();
-
-            Cursor cursor = db.query(Database.DATES_TABLE_NAME, null, Database.DATE + " = ?", new String[]{stringDate}, null, null, null);
-
-            if (cursor.moveToNext()) {
-                strDate = cursor.getString(cursor.getColumnIndex(Database.DATE));
-                info = cursor.getString(cursor.getColumnIndex(Database.INFO));
-            }
-
-            cursor.close();
-
-            db.close();
-            database.close();
-
-            return new edu.uillinois.wseemann.uicombatschedule.utils.Date(strDate, info);
-        }
+        return null;
     }
 }

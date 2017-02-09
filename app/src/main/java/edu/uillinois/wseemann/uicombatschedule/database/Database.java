@@ -5,13 +5,23 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by wfseeman on 10/2/2015.
  */
 public class Database extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final String TAG = Database.class.getName();
+
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "dates";
     public static final String DATES_TABLE_NAME = "dates";
 
@@ -56,133 +66,62 @@ public class Database extends SQLiteOpenHelper {
     }
 
     private void insertDates(SQLiteDatabase db) {
-        //buildValues(db, "10/2/2015", "");
-        buildValues(db, "8/27/2016", "Taekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "8/28/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "8/29/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "8/30/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "8/31/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "9/1/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
 
-        buildValues(db, "9/3/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "9/4/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "9/5/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "9/6/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "9/7/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "9/8/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+        //buildValues(db, "9/2/2015", "");
+        List<String> schedule = Arrays.asList(
+                "Shotokan Karate: 10:30-11:45am\n" +
+                        "Taekwondo: 12-2pm\n" +
+                        "Goshin Jitsu: 2-4pm",
+                "Judo: 3-5pm\nGoshin Jitsu: 5-7pm",
+                "Taekwondo: 6-7:30pm\nShotokan Karate: 8-9pm",
+                "Judo: 6:30-8:30pm",
+                "Taekwondo: 5:30-7pm\n" +
+                        "Goshin Jitsu: 7-9pm",
+                "Judo: 6:30-8pm",
+                "empty");
 
-        buildValues(db, "9/10/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "9/11/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "9/12/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "9/13/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "9/14/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "9/15/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+        Date startDate = null;
+        Date endDate = null;
 
-        buildValues(db, "9/17/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "9/18/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "9/19/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "9/20/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "9/21/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "9/22/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy"); //yyyy-MM-dd 2017-02-07
+        Calendar calendar = Calendar.getInstance();
 
-        buildValues(db, "9/24/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "9/25/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "9/26/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "9/27/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "9/28/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "9/29/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+        try {
+            calendar.setTime(sdf.parse("05/05/2017"));
+            endDate = calendar.getTime();
 
-        buildValues(db, "10/1/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "10/2/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "10/3/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "10/4/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "10/5/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "10/6/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+            calendar.setTime(sdf.parse("02/04/2017"));
+            startDate = calendar.getTime();
 
-        buildValues(db, "10/8/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "10/9/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "10/10/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "10/11/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "10/12/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "10/13/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+            Date currentDate = startDate;
 
-        buildValues(db, "10/15/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "10/16/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "10/17/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "10/18/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "10/19/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "10/20/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+            Log.d(TAG, startDate.toString());
+            Log.d(TAG, endDate.toString());
 
-        buildValues(db, "10/22/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "10/23/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "10/24/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "10/25/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "10/26/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "10/27/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+            int index = 0;
 
-        buildValues(db, "10/29/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "10/30/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "10/31/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "11/1/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "11/2/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "11/3/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+            while (currentDate.before(endDate)) {
+                Log.d(TAG, currentDate.toString());
 
-        buildValues(db, "11/5/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "11/6/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "11/7/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "11/8/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "11/9/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "11/10/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+                SimpleDateFormat sdf1 = new SimpleDateFormat("M/d/yyyy");
+                String stringDate = sdf1.format(calendar.getTime());
 
-        buildValues(db, "11/12/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "11/13/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "11/14/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "11/15/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "11/16/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "11/17/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+                Log.d(TAG, "Inserted: " + stringDate + " " + schedule.get(index));
 
-        buildValues(db, "11/19/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "11/20/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "11/21/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "11/22/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "11/23/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "11/24/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+                if (!schedule.get(index).equals("empty")) {
+                    buildValues(db, stringDate, schedule.get(index));
+                }
 
-        buildValues(db, "11/26/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "11/27/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "11/28/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "11/29/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "11/30/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "12/1/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+                // add a day, increment schedule counter
+                calendar.add(Calendar.DAY_OF_MONTH, 1); // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+                currentDate = calendar.getTime();
 
-        buildValues(db, "12/3/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "12/4/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "12/5/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "12/6/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "12/7/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "12/8/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
-
-        buildValues(db, "12/10/2016", "Illini Shotokan Karate 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm");
-        buildValues(db, "12/11/2016", "Illini Judo 3-5pm\nGoshin Jitsu: 5-7pm\nIllini Taekwondo 8-10pm");
-        buildValues(db, "12/12/2016", "Taekwondo: 6-7:30pm\nIllini Shotokan Karate 8-9pm");
-        buildValues(db, "12/13/2016", "Illini Judo 6:30-8:30pm\nIllini Taekwondo 8:30-10:30pm");
-        buildValues(db, "12/14/2016", "Taekwondo: 5:30-7pm\nGoshin Jitsu: 7-9pm");
-        buildValues(db, "12/15/2016", "Illini Judo 6:30-8pm\nIllini Taekwondo 8-10pm");
-        //
+                if (++index >= schedule.size()) {
+                    index = 0;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import android.support.v7.view.ActionMode;
 
@@ -103,19 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLongClickDate(Date date, View view) {
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                int month = cal.get(Calendar.MONTH) + 1;
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-                int year = cal.get(Calendar.YEAR);
-
-                if (month == 7 && day == 5) {
-                    String text = getString(R.string.butts);
-                    // show the easter egg for Katie :)
-                    Toast.makeText(getApplicationContext(), text,
-                            Toast.LENGTH_SHORT).show();
-                }
-
                 mDate = date;
                 startActionMode();
             }

@@ -4,5 +4,6 @@
     <string name="action_info">About</string>
     <string name="action_share">Share</string>
     <string name="about_text">The University of Illinois does not post a schedule for the combat room in the Activities and Recreation Center (ARC) and the student workers at the front desk are too lazy to check if you call. This application provides the combat room schedule as it is currently posted on the door at the ARC.</string>
+    <string name="easter_egg">Hey Sierra! &lt;3 &lt;3 &lt;3"</string>
     <string name="licenses">Licenses</string>
 </resources>

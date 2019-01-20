@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidGridAdapter;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import edu.uillinois.wseemann.uicombatschedule.R;
 import hirondelle.date4j.DateTime;
@@ -23,8 +23,8 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
 
 
     public CustomCaldroidAdapter(Context context, int month, int year,
-                                       HashMap<String, Object> caldroidData,
-                                       HashMap<String, Object> extraData) {
+                                       Map<String, Object> caldroidData,
+                                       Map<String, Object> extraData) {
         super(context, month, year, caldroidData, extraData);
     }
 
@@ -44,8 +44,8 @@ public class CustomCaldroidAdapter extends CaldroidGridAdapter {
         int bottomPadding = cellView.getPaddingBottom();
         int rightPadding = cellView.getPaddingRight();
 
-        TextView tv1 = (TextView) cellView.findViewById(android.R.id.text1);
-        TextView tv2 = (TextView) cellView.findViewById(android.R.id.text2);
+        TextView tv1 = cellView.findViewById(android.R.id.text1);
+        TextView tv2 = cellView.findViewById(android.R.id.text2);
 
         tv1.setTextColor(Color.BLACK);
 

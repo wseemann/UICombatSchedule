@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by wfseeman on 10/2/2015.
@@ -69,28 +70,31 @@ public class Database extends SQLiteOpenHelper {
 
         //buildValues(db, "9/2/2015", "");
         List<String> schedule = Arrays.asList(
-                "Shotokan Karate: 10:30-11:45am\n" +
-                        "Taekwondo: 12-2pm\n" +
-                        "Goshin Jitsu: 2-4pm",
-                "Judo: 3-5pm\nGoshin Jitsu: 5-7pm",
-                "Taekwondo: 6-7:30pm\nShotokan Karate: 8-9pm",
-                "Judo: 6:30-8:30pm",
-                "Taekwondo: 5:30-7pm\n" +
-                        "Goshin Jitsu: 7-9pm",
-                "Judo: 6:30-8pm",
-                "empty");
+                "MMA: 3-4pm\n",
 
-        Date startDate = null;
-        Date endDate = null;
+                "empty",
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy"); //yyyy-MM-dd 2017-02-07
+                "Brazilian Jiu Jitsu: 5-6:30pm\nJudo: 6:30-8:30pm",
+
+                "Taekwondo: 6-7:30pm\nGoshin Jitsu: 7:30-9:30pm",
+
+                "Judo: 6:30-8:30pm\nShotokan Karate: 8:30-10:30pm",
+
+                "empty",
+
+                "Shotokan Karate: 10:30-11:45am\nTaekwondo: 12-2pm\nGoshin Jitsu: 2-4pm\nBrazilian Jiu Jitsu: 4-5:30pm");
+
+        Date startDate;
+        Date endDate;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US); //yyyy-MM-dd 2017-02-07
         Calendar calendar = Calendar.getInstance();
 
         try {
-            calendar.setTime(sdf.parse("05/05/2017"));
+            calendar.setTime(sdf.parse("05/01/2019"));
             endDate = calendar.getTime();
 
-            calendar.setTime(sdf.parse("02/04/2017"));
+            calendar.setTime(sdf.parse("01/20/2019"));
             startDate = calendar.getTime();
 
             Date currentDate = startDate;

@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "edu.uillinois.wseemann.uicombatschedule"
-        minSdkVersion 9
-        targetSdkVersion 25
-        versionCode 8
-        versionName "1.0.7"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 9
+        versionName "1.0.8"
     }
     buildTypes {
         release {
@@ -26,6 +25,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.roomorama:caldroid:2.3.1'
+    implementation 'com.android.support:appcompat-v7:22.2.0'
+    implementation 'com.roomorama:caldroid:3.0.1'
 }

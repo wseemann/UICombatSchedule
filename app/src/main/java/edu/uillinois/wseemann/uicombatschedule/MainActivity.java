@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.support.v7.view.ActionMode;
+import android.widget.Toast;
 
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
@@ -102,6 +103,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLongClickDate(Date date, View view) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int month = cal.get(Calendar.MONTH) + 1;
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int year = cal.get(Calendar.YEAR);
+
+                if (month == 4 && day == 16) {
+                    String text = getString(R.string.easter_egg);
+                    // show the easter egg for Sierra :)
+                    Toast.makeText(getApplicationContext(), text,
+                            Toast.LENGTH_SHORT).show();
+                }
+
                 mDate = date;
                 startActionMode();
             }
